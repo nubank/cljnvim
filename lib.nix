@@ -1,6 +1,6 @@
 {
   pkgs,
-  plugins,
+  inputs,
 }: let
   inherit (pkgs.lib) evalModules;
 in {
@@ -43,12 +43,14 @@ in {
     };
 
   buildPluginOverlay = _super: self: let
-    inherit (pkgs.lib.lists) last;
+    inherit (pkgs.lib.lists) last filter;
     inherit (pkgs.lib.strings) splitString;
-    inherit (pkgs.lib.attrsets) attrByPath;
+    inherit (pkgs.lib.attrsets) attrByPath getAttr;
     inherit (pkgs.lib.trivial) pipe;
-    inherit (builtins) getAttr listToAttrs;
+    inherit (builtins) attrNames listToAttrs;
     inherit (self.vimUtils) buildVimPluginFrom2Nix;
+    isPlugin = n: n != "nixpkgs" && n != "flake-utils";
+    plugins = filter isPlugin (attrNames inputs);
     getPluginVersionOrHEAD = name: plugins:
       pipe plugins [
         (attrByPath [name "url"] "HEAD")
@@ -58,15 +60,14 @@ in {
     buildPlug = name:
       buildVimPluginFrom2Nix {
         pname = name;
-        version = getPluginVersionOrHEAD name plugins;
-        src = getAttr name plugins;
+        version = getPluginVersionOrHEAD name inputs;
+        src = getAttr name inputs;
       };
+    toVimPlug = name: {
+      inherit name;
+      value = buildPlug name;
+    };
   in {
-    neovimPlugins = listToAttrs (map
-      (name: {
-        inherit name;
-        value = buildPlug name;
-      })
-      plugins);
+    neovimPlugins = listToAttrs (map toVimPlug plugins);
   };
 }

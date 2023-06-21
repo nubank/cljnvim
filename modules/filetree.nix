@@ -12,7 +12,7 @@ in {
   config.cljnvim = mkIf (cfg.enable) {
     startPlugins = with pkgs.neovimPlugins; [oil-nvim];
     nnoremap = {
-      "-" = ":lua require('oil').open <cr>";
+      "-" = ":lua require('oil').open() <cr>";
     };
     rawConfig = ''
       -- FILETREE CONFIG

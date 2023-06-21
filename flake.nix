@@ -4,17 +4,23 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     flake-utils.url = "github:numtide/flake-utils";
+
+    # Plugins
+    oil-nvim = {
+      url = "github:stevearc/oil.nvim";
+      flake = false;
+    };
   };
 
   outputs = {
     flake-utils,
     nixpkgs,
     self,
-  }:
+    ...
+  } @ inputs:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit system overlays;};
-      lib = import ./lib.nix {inherit pkgs plugins;};
-      inherit (import ./plugins.nix) plugins;
+      lib = import ./lib.nix {inherit pkgs inputs;};
       inherit (import ./default_config.nix) config;
       inherit (import ./overlays.nix {inherit lib;}) overlays;
     in rec {
