@@ -1,44 +1,38 @@
 {
   config.cljnvim = {
-    /*
-       completion = {
+    completion = {
       enable = true;
       buffer.enable = true;
       cmdline.enable = true;
+      lsp = {
+        enable = true;
+        lspkind.enable = true;
+      };
       path.enable = true;
       snippets.enable = true;
     };
-    */
     filetree.enable = true;
     git.enable = true;
-    /*
-       languages = {
+    languages = {
       clojure = {
         enable = true;
-        lsp = true;
+        lsp.enable = true;
       };
       dart = {
         enable = true;
-        lsp = true;
-      };
-      flutter = {
-        enable = true;
-        lsp = true;
+        lsp.enable = true;
       };
     };
-    */
-    /*
-       lsp = {
+    lsp = {
       enable = true;
       null-ls.enable = true;
       trouble.enable = true;
       rename.enable = true;
     };
-    */
     # surround.enable = true;
+    telescope.enable = true;
     /*
-       telescope.enable = true;
-    theme = {
+       theme = {
       enable = true;
       name = "catppuccin";
       flavour = {
@@ -46,11 +40,11 @@
         light = "latte";
       };
     };
+    */
     treesitter = {
       enable = true;
       grammars = ["clojure" "dart" "dockerfile" "graphql" "json" "markdown"];
     };
-    */
     /*
        ui = {
       enable = true;

@@ -12,6 +12,10 @@ in {
     if cond
     then msg
     else "";
+  withAttrSet = cond: attrSet:
+    if cond
+    then attrSet
+    else {};
 
   mkNeovim = {config}: let
     inherit (builtins) filter;

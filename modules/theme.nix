@@ -11,9 +11,9 @@
   treesitter = config.cljnvim.treesitter;
   completion = config.cljnvim.completion;
   trouble = config.cljnvim.lsp.trouble;
-  which-key = config.cljnvim.ui.which_key;
-  illuminate = config.cljnvim.ui.word_highlight;
-  indent = config.cljnvim.visuals.indentBlankline;
+  which-key = config.cljnvim.ui.which-key;
+  illuminate = config.cljnvim.ui.word-highlight;
+  indent = config.cljnvim.visuals.indent-blankline;
   lsp = config.cljnvim.lsp;
 in {
   options.cljnvim.theme = {

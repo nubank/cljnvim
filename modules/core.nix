@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -172,8 +173,7 @@ in {
     '';
     groups = map mapAugroup cfg.augroups;
   in {
-    startPlugins = [];
-    optPlugins = [];
+    startPlugins = with pkgs.neovimPlugins; [plenary-nvim];
     augroups = [
       {
         name = "YankHighlight";

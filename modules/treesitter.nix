@@ -7,10 +7,10 @@
   inherit (pkgs) neovimPlugins;
   inherit (pkgs.vimPlugins) nvim-treesitter;
   inherit (lib) mkEnableOption mkIf mkOption types;
-  cfg = config.lvim.treesitter;
+  cfg = config.cljnvim.treesitter;
   mapPluginGrammars = grammars: nvim-treesitter.withPlugins (p: map (g: p.${g}) grammars);
 in {
-  options.lvim.treesitter = {
+  options.cljnvim.treesitter = {
     grammars = mkOption {
       description = "Grammars packages";
       type = types.listOf types.str;
@@ -19,7 +19,7 @@ in {
     enable = mkEnableOption "Enables tree-sitter [nvim-treesitter]";
   };
 
-  config.lvim = mkIf cfg.enable {
+  config.cljnvim = mkIf cfg.enable {
     startPlugins = with neovimPlugins; [
       nvim-ts-autotag
       nvim-ts-context
