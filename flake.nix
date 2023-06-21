@@ -148,14 +148,14 @@
       };
 
       packages = rec {
-        default = mnvim;
-        mnvim = lib.mkNeovim {inherit config;};
+        default = cljnvim;
+        cljnvim = lib.mkNeovim {inherit config;};
       };
 
       overlays.default = _super: _self: {
         inherit (lib) mkNeovim;
         inherit (pkgs) neovimPlugins;
-        inherit (packages) mnvim;
+        inherit (packages) cljnvim;
       };
     });
 }
