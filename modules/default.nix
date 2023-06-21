@@ -1,3 +1,3 @@
 {
-  imports = [./core.nix ./filetree.nix];
+  imports = [./core.nix ./filetree.nix ./git.nix];
 }

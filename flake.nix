@@ -6,6 +6,11 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # Plugins
+    gitsigns-nvim = {
+      url = "github:lewis6991/gitsigns.nvim";
+      flake = false;
+    };
+
     oil-nvim = {
       url = "github:stevearc/oil.nvim";
       flake = false;

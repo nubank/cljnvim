@@ -33,7 +33,6 @@ in {
     rawConfig = ''
       -- GITSIGNS
       require('gitsigns').setup {
-        keymaps = { noremap = true },
         watch_gitdir = { interval = 100, follow_files = true },
         current_line_blame = true,
         update_debounce = 50,

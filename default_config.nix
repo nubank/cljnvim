@@ -9,7 +9,7 @@
       snippets.enable = true;
     };
     */
-    filetree.enabled = true;
+    filetree.enable = true;
     git.enable = true;
     /*
        languages = {
@@ -36,7 +36,8 @@
     };
     */
     # surround.enable = true;
-    telescope.enable = true;
+    /*
+       telescope.enable = true;
     theme = {
       enable = true;
       name = "catppuccin";
@@ -49,6 +50,7 @@
       enable = true;
       grammars = ["clojure" "dart" "dockerfile" "graphql" "json" "markdown"];
     };
+    */
     /*
        ui = {
       enable = true;
