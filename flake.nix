@@ -15,9 +15,8 @@
       pkgs = import nixpkgs {inherit system overlays;};
       lib = import ./lib.nix {inherit pkgs plugins;};
       inherit (import ./plugins.nix) plugins;
+      inherit (import ./default_config.nix) config;
       inherit (import ./overlays.nix {inherit lib;}) overlays;
-
-      config = {};
     in rec {
       apps = rec {
         neovim = {
