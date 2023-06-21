@@ -33,8 +33,9 @@ in {
       modules = [{imports = [./modules];} config];
       specialArgs = {inherit pkgs;};
     };
-  in
-    pkgs.wrapNeovim pkgs.neovim-unwrapped {
+    luaConfig = minifyLua cljnvim.configRC;
+  in {
+    neovim = pkgs.wrapNeovim pkgs.neovim-unwrapped {
       withNodeJs = true;
       withPython3 = true;
       configure = {
@@ -45,6 +46,8 @@ in {
         };
       };
     };
+    configStr = luaConfig;
+  };
 
   buildPluginOverlay = _super: self: let
     inherit (pkgs.lib.lists) last filter;

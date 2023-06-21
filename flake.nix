@@ -147,9 +147,12 @@
         default = neovim;
       };
 
-      packages = rec {
-        default = cljnvim;
-        cljnvim = lib.mkNeovim {inherit config;};
+      packages = let
+        inherit (lib.mkNeovim {inherit config;}) neovim configStr;
+      in {
+        default = neovim;
+        cljnvim = neovim;
+        init-vim = pkgs.writeText "init.vim" configStr;
       };
 
       overlays.default = _super: _self: {
